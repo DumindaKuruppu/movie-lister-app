@@ -2,6 +2,7 @@ package com.example.movielisterapp.network
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -19,12 +20,19 @@ private val retrofit = Retrofit.Builder()
 
 interface MovieApiService {
     @GET("3/movie/top_rated?api_key=55957fcf3ba81b137f8fc01ac5a31fb5&language=en-US&page=1")
-    suspend fun getData(): List<Movie>
+    suspend fun getMovieData(): Call<List<Movie>>
+
+    fun fetchAllUsers(): Call<List<Movie>>
 }
 
 object MovieApi {
     val retrofitService: MovieApiService by lazy { retrofit.create(MovieApiService::class.java) }
+
+
 }
+
+
+
 
 
 
