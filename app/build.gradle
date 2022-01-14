@@ -1,10 +1,22 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+
 }
+
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdk 31
+
+//    Adding View Binding Feature
+    buildFeatures {
+        viewBinding true
+    }
+
+    buildFeatures {
+        dataBinding true
+    }
 
     defaultConfig {
         applicationId "com.example.movielisterapp"
@@ -37,7 +49,28 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+    implementation 'androidx.leanback:leanback:1.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+
+
+//    Retrofit with Moshi Converter
+    implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
+
+//    Adding Moshi library to convert JSON Response to Kotlin objects
+    implementation 'com.squareup.moshi:moshi-kotlin:1.9.3'
+
+//    Coil library to display images
+    implementation "io.coil-kt:coil:1.1.1"
+
+
+    implementation 'androidx.fragment:fragment-ktx:1.3.2'
+
+
+
+
+
+
 }
