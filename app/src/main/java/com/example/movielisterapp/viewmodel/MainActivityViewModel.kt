@@ -1,6 +1,8 @@
 package com.example.movielisterapp.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.movielisterapp.data.MoviesListData
 import com.example.movielisterapp.retrofit.RetroInstance
 import com.example.movielisterapp.retrofit.RetroServiceInterface
@@ -8,9 +10,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-//import retrofit2.Response
+class MainActivityViewModel : ViewModel() {
 
-class MainActivityViewModel {
+
+
+    fun showData(body: MoviesListData) {
+        val listOfMovies = body.results
+    }
 
     fun makeApiCall() {
 
@@ -21,11 +27,9 @@ class MainActivityViewModel {
 
 
             override fun onResponse(call: Call<MoviesListData>, response: Response<MoviesListData>) {
-                Log.i("Mai", response.toString())
-
-
-                val body = response.body()!!
-
+                Log.i("Duminda", "Yes you have a response")
+//                Log.i("Mai", response.toString())
+                showData(response.body()!!)
             }
 
             override fun onFailure(call: Call<MoviesListData>, t: Throwable) {
@@ -34,3 +38,6 @@ class MainActivityViewModel {
         })
     }
 }
+
+
+

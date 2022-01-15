@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movielisterapp.databinding.ActivityMainBinding
-import com.example.movielisterapp.viewmodel.MovieRecyclerViewAdapter
+import com.example.movielisterapp.adapter.MovieRecyclerViewAdapter
 
 lateinit var binding: ActivityMainBinding
 
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val recyclerView: RecyclerView = binding.moviesRecyclerView
+        val recyclerView: RecyclerView = binding.movieListRecyclerView
 
         layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
@@ -29,3 +29,5 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
     }
 }
+
+

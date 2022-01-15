@@ -1,5 +1,6 @@
-package com.example.movielisterapp.viewmodel
+package com.example.movielisterapp.adapter
 
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,8 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movielisterapp.binding
 import com.example.movielisterapp.data.MoviesListData
 import com.example.movielisterapp.databinding.MovieItemBinding
+import com.example.movielisterapp.viewmodel.MainActivityViewModel
 
-class MovieRecyclerViewAdapter : RecyclerView.Adapter<MovieRecyclerViewAdapter.MovieViewHolder>() {
+
+class MovieRecyclerViewAdapter() : RecyclerView.Adapter<MovieRecyclerViewAdapter.MovieViewHolder>() {
 
     private var movieList: List<MoviesListData>? = null
 
@@ -22,7 +25,7 @@ class MovieRecyclerViewAdapter : RecyclerView.Adapter<MovieRecyclerViewAdapter.M
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-
+//        holder.bind(data?.get(position)!!,activity)
         MainActivityViewModel().makeApiCall()
 
         holder.itemTitle.text = "The Matrix Resurrections"
@@ -42,15 +45,19 @@ class MovieRecyclerViewAdapter : RecyclerView.Adapter<MovieRecyclerViewAdapter.M
         }
     }
 
-    class MovieViewHolder(private val binding: MovieItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class MovieViewHolder(binding: MovieItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         var itemTitle = binding.movieTitle
         var itemDetails = binding.itemDetail
         var itemImage = binding.itemImage
 
-        fun bind(data: MoviesListData){
+        fun bind(data: MoviesListData, activity: Activity){
+
+            itemTitle.text = data.page.toString()
+
+
+
 
         }
     }
-
 }
