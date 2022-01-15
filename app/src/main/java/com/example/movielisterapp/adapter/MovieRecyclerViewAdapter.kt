@@ -6,54 +6,50 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movielisterapp.binding
-import com.example.movielisterapp.data.MoviesListData
-import com.example.movielisterapp.databinding.MovieItemBinding
-import com.example.movielisterapp.viewmodel.MainActivityViewModel
-
+import com.example.movielisterapp.data.MovieModel
+import com.example.movielisterapp.data.Results
+import com.example.movielisterapp.databinding.MovieCardBinding
 
 class MovieRecyclerViewAdapter() : RecyclerView.Adapter<MovieRecyclerViewAdapter.MovieViewHolder>() {
 
-    private var movieList: List<MoviesListData>? = null
+    private var movieList: List<Results>? = null
 
-    fun setMovieList() {
-        this.movieList = movieList
+    fun setMovieList(movieList: Results) {
+        this.movieList = listOf(movieList)
     }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        return MovieViewHolder(MovieItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return MovieViewHolder(MovieCardBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
 //        holder.bind(data?.get(position)!!,activity)
-        MainActivityViewModel().makeApiCall()
+        holder.bind(movieList?.get(position)!!, activity = Activity())
 
-        holder.itemTitle.text = "The Matrix Resurrections"
-        holder.itemDetails.text = "I thought this is going to be the best film ever but this sucks !"
-
-
+//        holder.itemTitle.text = "The Matrix Resurrections"
+//        holder.itemDetails.text = "I thought this is going to be the best film ever but this sucks !"
     }
 
     override fun getItemCount(): Int {
-        if (movieList == null) {
-//            binding.progressBar.visibility = View.VISIBLE
-            return 4
-        }
-        else {
+        return if (movieList == null) { 0
+    //            binding.progressBar.visibility = View.VISIBLE
+        } else {
             binding.progressBar.visibility = View.GONE
-            return movieList?.size!!
+            movieList?.size!!
         }
     }
 
-    class MovieViewHolder(binding: MovieItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class MovieViewHolder(binding: MovieCardBinding) : RecyclerView.ViewHolder(binding.root) {
 
         var itemTitle = binding.movieTitle
         var itemDetails = binding.itemDetail
         var itemImage = binding.itemImage
 
-        fun bind(data: MoviesListData, activity: Activity){
+        fun bind(data: Results, activity: Activity){
 
-            itemTitle.text = data.page.toString()
+            itemTitle.text = data.title
+            itemDetails.text = data.overview
 
 
 

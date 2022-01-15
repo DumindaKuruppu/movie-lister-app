@@ -5,11 +5,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class MoviesListData(
+data class MovieModel(
     @Json(name = "page")
     val page: Int?,
     @Json(name = "results")
-    val results: List<Result>?,
+    val results: List<Results>?,
     @Json(name = "total_pages")
     val totalPages: Int?,
     @Json(name = "total_results")
@@ -17,7 +17,7 @@ data class MoviesListData(
 )
 
 @JsonClass(generateAdapter = true)
-data class Result(
+data class Results(
     @Json(name = "adult")
     val adult: Boolean?,
     @Json(name = "backdrop_path")

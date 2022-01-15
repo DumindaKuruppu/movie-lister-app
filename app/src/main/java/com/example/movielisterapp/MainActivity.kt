@@ -1,16 +1,18 @@
 package com.example.movielisterapp
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movielisterapp.databinding.ActivityMainBinding
 import com.example.movielisterapp.adapter.MovieRecyclerViewAdapter
+import com.example.movielisterapp.viewmodel.MainActivityViewModel
 
 lateinit var binding: ActivityMainBinding
-
-private var layoutManager: RecyclerView.LayoutManager? = null
-private var adapter: RecyclerView.Adapter<MovieRecyclerViewAdapter.MovieViewHolder>? = null
+lateinit var recyclerAdapter: MovieRecyclerViewAdapter
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,14 +21,31 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initRecyclerView()
+        initViewModel()
+    }
 
+
+private fun initRecyclerView() {
         val recyclerView: RecyclerView = binding.movieListRecyclerView
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = MovieRecyclerViewAdapter()
 
-        layoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
+    }
 
-        adapter = MovieRecyclerViewAdapter()
-        recyclerView.adapter = adapter
+    private fun initViewModel() {
+        val movieRecyclerViewAdapter:MainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+
+        movieRecyclerViewAdapter.getLiveDataObserver().observe(this, Observer {
+            if(it != null) {
+                recyclerAdapter.setMovieList(it)
+                recyclerAdapter.notifyDataSetChanged()
+            } else {
+                Toast.makeText(this, "Error in getting list", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        movieRecyclerViewAdapter.makeApiCall()
     }
 }
 
