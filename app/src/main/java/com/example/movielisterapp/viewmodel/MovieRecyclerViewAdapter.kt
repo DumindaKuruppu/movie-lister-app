@@ -5,12 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movielisterapp.binding
-import com.example.movielisterapp.data.Movie
+import com.example.movielisterapp.data.MoviesListData
 import com.example.movielisterapp.databinding.MovieItemBinding
 
 class MovieRecyclerViewAdapter : RecyclerView.Adapter<MovieRecyclerViewAdapter.MovieViewHolder>() {
 
-    private var movieList: List<Movie>? = null
+    private var movieList: List<MoviesListData>? = null
 
     fun setMovieList() {
         this.movieList = movieList
@@ -48,7 +48,7 @@ class MovieRecyclerViewAdapter : RecyclerView.Adapter<MovieRecyclerViewAdapter.M
         var itemDetails = binding.itemDetail
         var itemImage = binding.itemImage
 
-        fun bind(data: Movie){
+        fun bind(data: MoviesListData){
 
         }
     }
