@@ -19,6 +19,8 @@ class MainActivityViewModel {
 
             override fun onResponse(call: Call<MoviesListData>, response: Response<MoviesListData>) {
 //                Log.i("Mai", response.toString())
+
+//                Duminda
                 val body = response.body()!!
 
             }
