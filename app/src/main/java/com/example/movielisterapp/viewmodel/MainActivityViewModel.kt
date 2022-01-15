@@ -8,9 +8,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+//import retrofit2.Response
+
 class MainActivityViewModel {
 
     fun makeApiCall() {
+
         val retroInstance = RetroInstance.getRetroInstance()
         val retroService = retroInstance.create(RetroServiceInterface::class.java)
         val call = retroService.getMovieList()
@@ -18,15 +21,15 @@ class MainActivityViewModel {
 
 
             override fun onResponse(call: Call<MoviesListData>, response: Response<MoviesListData>) {
-//                Log.i("Mai", response.toString())
+                Log.i("Mai", response.toString())
 
-//                Duminda
+
                 val body = response.body()!!
 
             }
 
             override fun onFailure(call: Call<MoviesListData>, t: Throwable) {
-                Log.i("Mai", "No Response")
+                Log.i("Duminda", "No Response")
             }
         })
     }
