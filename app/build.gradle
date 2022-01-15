@@ -55,7 +55,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
 
-
 //    Retrofit with Moshi Converter
     implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
 
@@ -64,10 +63,4 @@ dependencies {
 
 //    Coil library to display images
     implementation "io.coil-kt:coil:1.1.1"
-
-
-
-
-
-
 }
