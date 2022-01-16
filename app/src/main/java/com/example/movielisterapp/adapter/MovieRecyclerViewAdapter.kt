@@ -5,14 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.movielisterapp.R
 import com.example.movielisterapp.binding
-import com.example.movielisterapp.data.MovieModel
 import com.example.movielisterapp.data.Results
 import com.example.movielisterapp.databinding.MovieCardBinding
 
 class MovieRecyclerViewAdapter() : RecyclerView.Adapter<MovieRecyclerViewAdapter.MovieViewHolder>() {
 
     private var movieList: List<Results>? = null
+
+    private var images = R.drawable.matrix
 
     fun setMovieList(movieList: Results) {
         this.movieList = listOf(movieList)
@@ -25,14 +27,15 @@ class MovieRecyclerViewAdapter() : RecyclerView.Adapter<MovieRecyclerViewAdapter
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
 //        holder.bind(data?.get(position)!!,activity)
-        holder.bind(movieList?.get(position)!!, activity = Activity())
+//        holder.bind(movieList?.get(position)!!, activity = Activity())
 
-//        holder.itemTitle.text = "The Matrix Resurrections"
-//        holder.itemDetails.text = "I thought this is going to be the best film ever but this sucks !"
+        holder.itemTitle.text = "The Matrix Resurrections"
+        holder.itemDetails.text = "I thought this is going to be the best!"
+        holder.itemImage.setImageResource(images)
     }
 
     override fun getItemCount(): Int {
-        return if (movieList == null) { 0
+        return if (movieList == null) { 4
     //            binding.progressBar.visibility = View.VISIBLE
         } else {
             binding.progressBar.visibility = View.GONE

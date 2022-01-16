@@ -22,7 +22,6 @@
             android:layout_height="100dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        <!--            app:backdropPath="@{photo.backdropPath}" -->
 
         <TextView
             android:id="@+id/movieTitle"

@@ -1,7 +1,6 @@
 package com.example.movielisterapp.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.movielisterapp.data.MovieModel
@@ -38,12 +37,10 @@ class MainActivityViewModel : ViewModel() {
                     val movieResponse = response.body()!!
                     for (results in movieResponse.results!!) {
                         Log.v("Duminda", results.title.toString())
-                        Log.v("Duminda", results.originalTitle.toString())
                     }
                 }
 
 
-                liveDataList.postValue(response.body()?.results.toString())
 //                liveDataList.postValue(response.body())
 
 
@@ -57,8 +54,5 @@ class MainActivityViewModel : ViewModel() {
     }
 }
 
-private fun Any.postValue(toString: String) {
-
-}
 
 
