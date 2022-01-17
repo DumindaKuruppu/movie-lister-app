@@ -6,40 +6,37 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.movielisterapp.databinding.ActivityMainBinding
-import com.example.movielisterapp.adapter.MovieRecyclerViewAdapter
+import com.example.movielisterapp.adapter.MovieListAdapter
 import com.example.movielisterapp.viewmodel.MainActivityViewModel
-
-lateinit var binding: ActivityMainBinding
-lateinit var recyclerAdapter: MovieRecyclerViewAdapter
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    lateinit var recyclerListAdapter: MovieListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
 
         initRecyclerView()
         initViewModel()
     }
 
 
-private fun initRecyclerView() {
-        val recyclerView: RecyclerView = binding.movieListRecyclerView
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = MovieRecyclerViewAdapter()
+    private fun initRecyclerView() {
+        movieListRecyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerListAdapter = MovieListAdapter()
+        movieListRecyclerView.adapter = recyclerListAdapter
 
     }
 
     private fun initViewModel() {
-        val movieRecyclerViewAdapter:MainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        val movieRecyclerViewAdapter: MainActivityViewModel =
+            ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
         movieRecyclerViewAdapter.getLiveDataObserver().observe(this, Observer {
-            if(it != null) {
-                recyclerAdapter.setMovieList(it)
-                recyclerAdapter.notifyDataSetChanged()
+            if (it != null) {
+                recyclerListAdapter.setMovieList(it)
+                recyclerListAdapter.notifyDataSetChanged()
             } else {
                 Toast.makeText(this, "Error in getting list", Toast.LENGTH_SHORT).show()
             }
@@ -48,5 +45,3 @@ private fun initRecyclerView() {
         movieRecyclerViewAdapter.makeApiCall()
     }
 }
-
-

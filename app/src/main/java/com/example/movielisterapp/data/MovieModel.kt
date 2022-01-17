@@ -8,7 +8,7 @@ data class MovieModel(
     @Json(name = "page")
     val page: Int?,
     @Json(name = "results")
-    val results: List<Results>?,
+    val results: List<Result>?,
     @Json(name = "total_pages")
     val totalPages: Int?,
     @Json(name = "total_results")
@@ -16,7 +16,7 @@ data class MovieModel(
 )
 
 @JsonClass(generateAdapter = true)
-data class Results(
+data class Result(
     @Json(name = "adult")
     val adult: Boolean?,
     @Json(name = "backdrop_path")

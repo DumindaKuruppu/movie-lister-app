@@ -17,7 +17,7 @@
         android:padding="16dp">
 
         <ImageView
-            android:id="@+id/itemImage"
+            android:id="@+id/movieImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -29,16 +29,16 @@
             android:layout_height="39dp"
             android:layout_marginStart="16dp"
             android:textSize="30sp"
-            app:layout_constraintLeft_toRightOf="@id/itemImage"
+            app:layout_constraintLeft_toRightOf="@id/movieImage"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/itemDetail"
+            android:id="@+id/movieDetail"
             android:layout_width="236dp"
             android:layout_height="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintLeft_toRightOf="@id/itemImage"
+            app:layout_constraintLeft_toRightOf="@id/movieImage"
             app:layout_constraintTop_toBottomOf="@id/movieTitle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

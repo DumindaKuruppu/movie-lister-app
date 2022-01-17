@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.movielisterapp.data.MovieModel
-import com.example.movielisterapp.data.Results
+import com.example.movielisterapp.data.Result
 import com.example.movielisterapp.retrofit.RetroInstance
 import com.example.movielisterapp.retrofit.RetroServiceInterface
 import retrofit2.Call
@@ -13,10 +13,9 @@ import retrofit2.Response
 
 class MainActivityViewModel : ViewModel() {
 
-    var liveDataList: MutableLiveData<Results> = MutableLiveData()
+    var liveDataList: MutableLiveData<List<Result>> = MutableLiveData()
 
-
-    fun getLiveDataObserver(): MutableLiveData<Results> {
+    fun getLiveDataObserver(): MutableLiveData<List<Result>> {
         return liveDataList
     }
 
@@ -33,17 +32,7 @@ class MainActivityViewModel : ViewModel() {
                 Log.i("Duminda", "Yes you have a response")
                 Log.i("Duminda", response.toString())
 
-                if (response.isSuccessful) {
-                    val movieResponse = response.body()!!
-                    for (results in movieResponse.results!!) {
-                        Log.v("Duminda", results.title.toString())
-                    }
-                }
-
-
-//                liveDataList.postValue(response.body())
-
-
+                liveDataList.postValue(response.body()?.results)
             }
 
             override fun onFailure(call: Call<MovieModel>, t: Throwable) {
@@ -53,6 +42,7 @@ class MainActivityViewModel : ViewModel() {
         })
     }
 }
+
 
 
 
