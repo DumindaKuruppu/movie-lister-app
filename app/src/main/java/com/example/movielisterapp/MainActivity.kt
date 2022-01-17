@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
                 recyclerListAdapter.setMovieList(it)
                 recyclerListAdapter.notifyDataSetChanged()
             } else {
-                Toast.makeText(this, "Error in getting list", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error getting list", Toast.LENGTH_SHORT).show()
             }
         })
 

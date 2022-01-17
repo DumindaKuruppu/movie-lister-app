@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    app:cardBackgroundColor="#FFC107"
+    android:layout_marginLeft="15dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="15dp"
+    app:cardBackgroundColor="#000000"
     app:cardCornerRadius="12dp"
     app:cardElevation="3dp"
     app:contentPadding="4dp">
@@ -13,31 +16,40 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_height="400px">
 
         <ImageView
             android:id="@+id/movieImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="300px"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/movieTitle"
-            android:layout_width="236dp"
-            android:layout_height="39dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Movie Title"
+            android:layout_marginTop="8dp"
             android:layout_marginStart="16dp"
-            android:textSize="30sp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintLeft_toRightOf="@id/movieImage"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/movieDetail"
-            android:layout_width="236dp"
-            android:layout_height="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
+            android:text="Original Title"
+            android:textColor="@color/white"
             app:layout_constraintLeft_toRightOf="@id/movieImage"
             app:layout_constraintTop_toBottomOf="@id/movieTitle" />
 
