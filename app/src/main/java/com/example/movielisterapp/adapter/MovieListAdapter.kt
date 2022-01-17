@@ -46,13 +46,10 @@ class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.MovieViewHolder>(
         fun bind(movieData: Result) {
 
             val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/"
+
             movieTitle.text = movieData.title
             movieOriginalTitle.text = movieData.originalTitle
-
             Glide.with(movieImage).load(IMAGE_BASE_URL + movieData.posterPath).into(movieImage)
-
-
-
         }
     }
 }
